@@ -1,15 +1,21 @@
 import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { updateBlog } from "../state/action-creators";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState({ title: "", category: "", context: "" });
+  // const [blogs, setBlogs] = useState({ title: "", category: "", context: "" });
+  const blogs = useSelector((state)=>state)
+  const dispatch = useDispatch()
 
   const handleChange = (event)=>{
-   setBlogs({
-    ...blogs,
-    [event.target.name]:event.target.value
-    
-   })
-   localStorage.setItem('formValues', JSON.stringify({ ...blogs, [event.target.name]: event.target.value }));
+    const { name, value } = event.target;
+    const updatedBlog = {
+      ...blogs,
+      [name]: value,
+    };
+   dispatch(updateBlog(updatedBlog))
+   localStorage.setItem('formValues', JSON.stringify(updatedBlog));
+  //  localStorage.setItem('formValues', JSON.stringify({ ...blogs, [event.target.name]: event.target.value }));
   }
   const handleSubmit = (event) => {
     event.preventDefault();
