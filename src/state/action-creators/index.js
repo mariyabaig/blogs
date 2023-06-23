@@ -19,7 +19,8 @@ export const addPost = (title, category, context) => ({
 });
 
 
-export const deletePost = (title, category, context) => ({
-  type: DELETE_POST,
-  payload: { title, category, context }
-});
+export const deletePost = (index) => ({
+    type: DELETE_POST,
+    payload: index
+  });
+  
