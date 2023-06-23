@@ -1,42 +1,12 @@
-// const initialState = [{title : "", category: "", context:""}]
-// const blogblogReducer  = (state=initialState, action)=>{
-//     switch (action.type){
-//         case 'updateBlog' :
-//             return { ...state, ...action.payload };
-//             default:
-//               return state;
-//     }
-   
-// }
-// export default blogblogReducer 
-
-// const initialState = [{ title: "", category: "", context: "" }];
-
-// const blogblogReducer  = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'updateBlog':
-//       return [action.payload];
-//     default:
-//       return state;
-//   }
-// };
-// const initialState = [];
-
-// const blogblogReducer  = (state = initialState, action) => {
-//   switch (action.type) {
-//     case 'updateBlog':
-//       return [...state, action.payload];
-//     default:
-//       return state;
-//   }
-// };
 import { ADD_POST, DELETE_POST } from '../action-creators/index';
 
 const initialState = {
   posts: []
 };
 
-const blogReducer  = (state = initialState, action) => {
+const blogReducer = (state = initialState, action) => {
+  console.log('Action:', action.type);
+  console.log('Payload:', action.payload);
   switch (action.type) {
     case ADD_POST:
       return {
@@ -46,14 +16,11 @@ const blogReducer  = (state = initialState, action) => {
       case DELETE_POST:
         return {
           ...state,
-          posts: state.posts.filter((post, index) => index !== action.payload)
+          posts: state.posts.filter((_, index) => index !== action.payload)
         };
     default:
       return state;
   }
 };
 
-export default blogReducer ;
-
-
-
+export default blogReducer;
