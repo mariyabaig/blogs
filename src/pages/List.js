@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addPost } from '../state/action-creators/index';
+import { addPost, deletePost } from '../state/action-creators/index';
 
 const List = () => {
   const posts = useSelector((state) => state.blogReducer.posts);
+  const dispatch = useDispatch();
+  
 
+  const handleDeletePost = (index) => {
+    dispatch(deletePost(index));
+  };
   return (
     <>
     <div className='h-screen  bg-gray-100'>
@@ -23,7 +28,7 @@ const List = () => {
                 <button className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm">
                   Edit
                 </button>
-                <button className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm">
+                <button className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm" onClick={() => handleDeletePost(index)}>
                   Delete
                 </button>
               </li>
