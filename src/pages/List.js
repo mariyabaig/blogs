@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, editPost } from '../state/action-creators/index';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp as solidThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faThumbsUp as regularThumbsUp } from '@fortawesome/free-regular-svg-icons';
+
 
 const List = () => {
   const posts = useSelector((state) => state.blogReducer.posts);
@@ -41,7 +45,16 @@ const List = () => {
     setEditedCategory('');
     setEditedContext('');
   };
+  const [likedPosts, setLikedPosts] = useState([]);
 
+  const handleToggleLike = (index) => {
+    if (likedPosts.includes(index)) {
+      setLikedPosts(likedPosts.filter((likedIndex) => likedIndex !== index));
+    } else {
+      setLikedPosts([...likedPosts, index]);
+    }
+  };
+  
   return (
     <>
       <div className='h-screen bg-gray-100'>
@@ -101,6 +114,18 @@ const List = () => {
                       >
                         Delete
                       </button>
+                      <button
+          className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
+          onClick={() => handleToggleLike(index)}
+        >
+          {likedPosts.includes(index) ? (
+            <FontAwesomeIcon icon={solidThumbsUp} />
+          ) : (
+            <FontAwesomeIcon icon={regularThumbsUp} />
+          )}
+          Like
+        </button>
+     
                     </>
                   )}
                 </li>
