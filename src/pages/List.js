@@ -210,10 +210,10 @@ const List = () => {
 
   return (
     <>
-      <div className="h-screen bg-gray-100">
+      <div className=" bg-gray-100">
         <h2 className="text-3xl font-bold m-2 flex justify-center font-karla">Submitted Posts:</h2>
         {posts && posts.length > 0 && (
-          <div className="mt-4 grid grid-cols-2 gap-2">
+          <div className="mt-4 grid sm:grid-cols-2">
             <ul>
               {posts.map((post, index) => (
                 <li
