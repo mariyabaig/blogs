@@ -4,28 +4,28 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav className="bg-white shadow-lg ">
+      <nav className=" shadow-lg bg-purple-200 flex justify-center font-karla">
         <div className="max-w-3xl mx-auto">
           <div className="grid sm:grid-cols-4 text-lg gap-4 text-center py-4 px-8">
             <div className="">
-              <Link to="/" className="hover:font-bold p-2">
+              <Link to="/" className="hover:font-bold p-2 font-cursive text-4xl font-extrabold text-purple-950 ">
                 BlogAway
               </Link>
             </div>
           
             <div>
               <Link to="/addblogs" className="hover:font-bold p-2">
-                Add Blog
+                add blogs
               </Link>
             </div>
             <div>
               <Link to="/list" className="hover:font-bold p-2">
-                View Blogs
+                view blogs
               </Link>
             </div>
             <div>
               <Link to="/about" className="hover:font-bold p-2">
-                About
+                about
               </Link>
             </div>
           </div>
@@ -33,6 +33,7 @@ const Navbar = () => {
 
         
       </nav>
+      
     </>
   );
 };
