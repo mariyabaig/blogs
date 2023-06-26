@@ -18,21 +18,38 @@ const blogReducer = (state = initialState, action) => {
           ...state,
           posts: state.posts.filter((_, index) => index !== action.payload)
         };
+        // case EDIT_POST:
+        //   return {
+        //     ...state,
+        //     posts: state.posts.map((post, index) => {
+        //       if (index === action.payload.index) {
+        //         return {
+        //           ...post,
+        //           title: action.payload.title,
+        //           category: action.payload.category,
+        //           context: action.payload.context
+        //         };
+        //       }
+        //       return post;
+        //     })
+        //   };
         case EDIT_POST:
-          return {
-            ...state,
-            posts: state.posts.map((post, index) => {
-              if (index === action.payload.index) {
-                return {
-                  ...post,
-                  title: action.payload.title,
-                  category: action.payload.category,
-                  context: action.payload.context
-                };
-              }
-              return post;
-            })
-          };
+  return {
+    ...state,
+    posts: state.posts.map((post, index) => {
+      if (index === action.payload.index) {
+        return {
+          ...post,
+          ...action.payload.post
+        };
+      }
+      return post;
+    })
+  };
+
+
+
+        
     default:
       return state;
   }
