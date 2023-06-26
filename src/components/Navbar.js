@@ -33,7 +33,8 @@ const Navbar = () => {
 
         
       </nav>
-      
+      <div className="h-3 bg-purple-300"></div> {/* Colored div as navbar border */}
+      <div className="h-3 bg-blue-200"></div> {/* Colored div as navbar border */}
     </>
   );
 };
