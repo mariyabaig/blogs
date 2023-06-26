@@ -4,9 +4,11 @@ import { deletePost, editPost } from '../state/action-creators/index';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp as solidThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faThumbsUp as regularThumbsUp } from '@fortawesome/free-regular-svg-icons';
-
+import { useNavigate } from 'react-router-dom';
 
 const List = () => {
+
+  const navigate = useNavigate()
   const posts = useSelector((state) => state.blogReducer.posts);
   const dispatch = useDispatch();
 
@@ -29,14 +31,22 @@ const List = () => {
     setEditedContext(post.context);
   };
 
-  const handleSaveEdit = (index) => {
-    dispatch(editPost(index, editedTitle, editedCategory, editedContext));
+  const handleSaveEdit = () => {
+    console.log('Edited Index:', editedIndex);
+    console.log('Edited Title:', editedTitle);
+    console.log('Edited Category:', editedCategory);
+    console.log('Edited Context:', editedContext);
+    dispatch(editPost(editedIndex, editedTitle, editedCategory, editedContext));
     setEditMode(false);
     setEditedIndex(null);
     setEditedTitle('');
     setEditedCategory('');
     setEditedContext('');
   };
+  
+  
+  
+  
 
   const handleCancelEdit = () => {
     setEditMode(false);
@@ -44,6 +54,7 @@ const List = () => {
     setEditedTitle('');
     setEditedCategory('');
     setEditedContext('');
+
   };
   const [likedPosts, setLikedPosts] = useState([]);
 
@@ -85,11 +96,12 @@ const List = () => {
                         className="mb-2 px-2 py-1 rounded border"
                       />
                       <button
-                        className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
-                        onClick={() => handleSaveEdit(index)}
-                      >
-                        Save
-                      </button>
+  className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
+  onClick={handleSaveEdit}
+>
+  Save
+</button>
+
                       <button
                         className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
                         onClick={handleCancelEdit}
