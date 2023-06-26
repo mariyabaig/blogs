@@ -12,6 +12,7 @@
 export const ADD_POST = 'ADD_POST';
 export const DELETE_POST = 'DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
+export const UPDATE_BLOG = 'UPDATE_BLOG';
 
 // Action Creators
 export const addPost = (title, category, context) => ({
@@ -25,8 +26,28 @@ export const deletePost = (index) => ({
     payload: index
   });
   
-  export const editPost = (index) => ({
+// action-creators/index.js
+
+export const editPost = (index, title, category, context) => {
+  return {
     type: EDIT_POST,
-    payload: index
+    payload: {
+      index: index,
+      post: {
+        title: title,
+        category: category,
+        context: context
+      }
+    }
+  };
+};
+
+
+
+
+  
+  export const updateBlog = (title, category, context) => ({
+    type: UPDATE_BLOG,
+    payload: { title, category, context }
   });
   
