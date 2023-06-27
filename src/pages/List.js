@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, editPost } from "../state/action-creators/index";
@@ -20,7 +19,9 @@ const List = () => {
 
   const handleDeletePost = (index) => {
     dispatch(deletePost(index));
-    toast.success("Post deleted successfully!");
+    toast.error("Post deleted successfully!", {
+      className: "toast-error",
+    });
   };
 
   const handleEditPost = (index) => {
@@ -43,7 +44,9 @@ const List = () => {
     setEditedTitle("");
     setEditedCategory("");
     setEditedContext("");
-    toast.success("Post updated successfully!");
+    toast.success("Post updated successfully!", {
+      className: "toast-success",
+    });
   };
 
   const handleCancelEdit = () => {
@@ -148,7 +151,11 @@ const List = () => {
           </div>
         )}
       </div>
-      <ToastContainer />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={true}
+      />
     </>
   );
 };
