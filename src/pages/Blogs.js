@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../state/action-creators/index';
+import { useNavigate } from 'react-router-dom';
 
 const Blogs = () => {
   const [title, setTitle] = useState('');
@@ -11,7 +12,7 @@ const Blogs = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   const dispatch = useDispatch();
-
+const navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -121,24 +122,11 @@ const Blogs = () => {
             </button>
           </div>
         )}
-
+<button className='bg-purple-100 block rounded-lg shadow hover:shadow-lg p-4 mt-2 font-bold text-purple-800' onClick={()=>navigate("/list")}>View Blogs</button>
         </form>
 
 
-        {/* {posts && posts.length > 0 && (
-          <div className="mt-4">
-            <h2 className="text-xl font-bold mb-2">Submitted Posts:</h2>
-            <ul>
-              {posts.map((post, index) => (
-                <li key={index} className="mb-4">
-                  <h3 className="text-lg font-bold">{post.title}</h3>
-                  <p className="text-gray-500">Category: {post.category}</p>
-                  <p>{post.context}</p>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )} */}
+      
       </div>
     </>
   );
