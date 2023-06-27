@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, editPost } from '../state/action-creators/index';
-import { BsSuitHeart, BsSuitHeartFill, BsPencil, BsTrash } from 'react-icons/bs';
+import { BsSuitHeart, BsSuitHeartFill, BsPencil, BsTrash, BsEye } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -62,6 +62,10 @@ const List = () => {
     }
   };
 
+  const handleViewPost = (index) => {
+    navigate(`/blogs/${index}`);
+  };
+
   return (
     <>
       <div className="bg-gray-100">
@@ -75,7 +79,7 @@ const List = () => {
         {posts && posts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 m-4">
             {posts.map((post, index) => (
-              <div key={index} className="m-4 p-8 rounded-md shadow-md bg-white">
+              <div key={index} className="m-4 p-8 rounded-md shadow-md bg-white card">
                 {editMode && editedPost.index === index ? (
                   <>
                     {Object.entries(editedPost).map(([key, value]) => {
@@ -109,7 +113,7 @@ const List = () => {
                           type="text"
                           value={value}
                           onChange={(e) => setEditedPost({ ...editedPost, [key]: e.target.value })}
-                          className="mb-2 px-2 py-1 rounded border"
+                          className="mb-2 px-2 py-1 rounded border input"
                         />
                       );
                     })}
@@ -123,7 +127,7 @@ const List = () => {
                 ) : (
                   <>
                     <div className="flex flex-col">
-                      <span className="text-2xl text-center text-purple-800">
+                      <span className="text-2xl text-center text-purple-800 title">
                         {post.title}
                         <button className="m-2 text-purple-500 shadow-sm" onClick={() => handleToggleLike(index)}>
                           {likedPosts.includes(index) ? <BsSuitHeartFill size={20} /> : <BsSuitHeart size={20} />}
@@ -134,13 +138,13 @@ const List = () => {
                       {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />}
                       <span>
                         <button
-                          className="m-2 shadow-sm  bg-purple-100 p-2 rounded-sm text-purple-700"
+                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-purple-700 edit-button"
                           onClick={() => handleEditPost(index)}
                         >
                           <BsPencil size={20} /> 
                         </button>
                         <button
-                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-red-500"
+                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-red-500 delete-button"
                           onClick={() => {
                             if (window.confirm('Are you sure you want to delete this post?')) {
                               handleDeletePost(index);
@@ -148,6 +152,12 @@ const List = () => {
                           }}
                         >
                           <BsTrash size={20} /> 
+                        </button>
+                        <button
+                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-green-500 view-button"
+                          onClick={() => handleViewPost(index)}
+                        >
+                          <BsEye size={20} /> 
                         </button>
                       </span>
                     </div>
