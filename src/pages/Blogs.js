@@ -1,7 +1,7 @@
 // Blogs.jsx
 
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addPost } from '../state/action-creators/index';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,7 +12,7 @@ const Blogs = () => {
     title: '',
     category: '',
     context: '',
-    image: null
+    image: null,
   });
 
   const dispatch = useDispatch();
@@ -38,18 +38,36 @@ const Blogs = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setPost((prevState) => ({
-      ...prevState,
-      [name]: name === 'image' ? files[0] : value
-    }));
+    if (name === 'image') {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPost((prevState) => ({
+          ...prevState,
+          image: reader.result,
+        }));
+      };
+      if (files[0]) {
+        reader.readAsDataURL(files[0]);
+      } else {
+        setPost((prevState) => ({
+          ...prevState,
+          image: null,
+        }));
+      }
+    } else {
+      setPost((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const { title, category, context, image } = post;
 
   return (
     <>
-      <div className='bg-gray-100 h-screen flex justify-center items-center'>
-        <form onSubmit={handleSubmit} className="bg-white p-12 rounded" >
+      <div className="bg-gray-100 h-screen flex justify-center items-center">
+        <form onSubmit={handleSubmit} className="bg-white p-12 rounded">
           <div className="mb-4">
             <label htmlFor="title" className="block mb-2 text-gray-500 font-bold">
               Title:
@@ -99,10 +117,13 @@ const Blogs = () => {
               type="file"
               id="image"
               name="image"
+              accept="image/*"
               onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
             />
           </div>
+
+          {image && <img src={image} alt="Blog" className="max-w-full h-auto mb-4" />}
 
           <button
             type="submit"
