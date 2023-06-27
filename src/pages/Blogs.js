@@ -1,5 +1,6 @@
+// Blogs.jsx
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPost } from '../state/action-creators/index';
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +11,8 @@ const Blogs = () => {
   const [post, setPost] = useState({
     title: '',
     category: '',
-    context: ''
+    context: '',
+    image: null
   });
 
   const dispatch = useDispatch();
@@ -25,24 +27,24 @@ const Blogs = () => {
     }
 
     // Dispatch action to add post
-    dispatch(addPost(post.title, post.category, post.context));
+    dispatch(addPost(post.title, post.category, post.context, post.image));
 
     // Reset form and error state
-    setPost({ title: '', category: '', context: '' });
+    setPost({ title: '', category: '', context: '', image: null });
 
     // Show success message
     toast.success('Blog successfully added!');
   };
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setPost((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: name === 'image' ? files[0] : value
     }));
   };
 
-  const { title, category, context } = post;
+  const { title, category, context, image } = post;
 
   return (
     <>
@@ -89,18 +91,28 @@ const Blogs = () => {
             ></textarea>
           </div>
 
+          <div className="mb-4">
+            <label htmlFor="image" className="block mb-2 text-gray-500 font-bold">
+              Image:
+            </label>
+            <input
+              type="file"
+              id="image"
+              name="image"
+              onChange={handleChange}
+              className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
+            />
+          </div>
+
           <button
             type="submit"
-            className="block bg-blue-400 p-4 text-white font-bold rounded-lg shadow hover:shadow-lg"
+            className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow hover:bg-blue-600 transition-all duration-200"
           >
-            Submit
+            Add Blog
           </button>
-
-          <button className='bg-purple-100 block rounded-lg shadow hover:shadow-lg p-4 mt-2 font-bold text-purple-800' onClick={() => navigate("/list")}>View Blogs</button>
         </form>
-
-        <ToastContainer />
       </div>
+      <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} />
     </>
   );
 };
