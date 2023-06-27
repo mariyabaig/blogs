@@ -5,6 +5,8 @@ import Blogs from './pages/Blogs';
 import About from './pages/About';
 import List from './pages/List';
 import Navbar from './components/Navbar';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
@@ -17,6 +19,7 @@ function App() {
           <Route exact path="/about" element={<About />} />
           <Route eaxct path="/list" element={<List />} />
         </Routes>
+        <ToastContainer />
       </BrowserRouter>
     </>
   );
