@@ -15,11 +15,15 @@ export const EDIT_POST = 'EDIT_POST';
 export const UPDATE_BLOG = 'UPDATE_BLOG';
 
 // Action Creators
-export const addPost = (title, category, context) => ({
-  type: ADD_POST,
-  payload: { title, category, context }
-});
+// export const addPost = (title, category, context) => ({
+//   type: ADD_POST,
+//   payload: { title, category, context }
+// });
 
+export const addPost = (title, category, context, image) => ({
+  type: ADD_POST,
+  payload: { title, category, context, image }
+});
 
 export const deletePost = (index) => ({
     type: DELETE_POST,
