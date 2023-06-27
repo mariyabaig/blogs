@@ -7,10 +7,16 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const List = () => {
+  // React Router hook for navigation
   const navigate = useNavigate();
+
+  // Accessing the 'posts' array from the Redux store
   const posts = useSelector((state) => state.blogReducer.posts);
+
+  // Accessing the dispatch function from Redux
   const dispatch = useDispatch();
 
+  // State for controlling edit mode and storing edited post data
   const [editMode, setEditMode] = useState(false);
   const [editedPost, setEditedPost] = useState({
     index: null,
@@ -19,6 +25,7 @@ const List = () => {
     context: ""
   });
 
+  // Function for deleting a post
   const handleDeletePost = (index) => {
     dispatch(deletePost(index));
     toast.error("Post deleted successfully!", {
@@ -26,6 +33,7 @@ const List = () => {
     });
   };
 
+  // Function for entering edit mode and populating the edited post data
   const handleEditPost = (index) => {
     setEditMode(true);
     const post = posts[index];
@@ -37,6 +45,7 @@ const List = () => {
     });
   };
 
+  // Function for saving the edited post
   const handleSaveEdit = () => {
     const { index, title, category, context } = editedPost;
     dispatch(editPost(index, title, category, context));
@@ -47,13 +56,16 @@ const List = () => {
     });
   };
 
+  // Function for canceling the edit mode and resetting the edited post data
   const handleCancelEdit = () => {
     setEditMode(false);
     setEditedPost({ index: null, title: "", category: "", context: "" });
   };
 
+  // State for tracking liked posts
   const [likedPosts, setLikedPosts] = useState([]);
 
+  // Function for toggling the like status of a post
   const handleToggleLike = (index) => {
     if (likedPosts.includes(index)) {
       setLikedPosts(likedPosts.filter((likedIndex) => likedIndex !== index));
@@ -75,6 +87,7 @@ const List = () => {
                 className="m-4 p-8 rounded-md shadow-md bg-white"
               >
                 {editMode && editedPost.index === index ? (
+                  // Displaying input fields for editing the post
                   <>
                     {Object.entries(editedPost).map(([key, value]) => (
                       <input
@@ -99,6 +112,7 @@ const List = () => {
                     </button>
                   </>
                 ) : (
+                  // Displaying the post details, edit button, delete button, and like button
                   <>
                     <h3 className="text-lg font-bold">Title: {post.title}</h3>
                     <p className="text-lg">Category: {post.category}</p>
