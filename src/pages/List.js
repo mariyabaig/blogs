@@ -12,10 +12,12 @@ const List = () => {
   const dispatch = useDispatch();
 
   const [editMode, setEditMode] = useState(false);
-  const [editedIndex, setEditedIndex] = useState(null);
-  const [editedTitle, setEditedTitle] = useState("");
-  const [editedCategory, setEditedCategory] = useState("");
-  const [editedContext, setEditedContext] = useState("");
+  const [editedPost, setEditedPost] = useState({
+    index: null,
+    title: "",
+    category: "",
+    context: ""
+  });
 
   const handleDeletePost = (index) => {
     dispatch(deletePost(index));
@@ -26,24 +28,20 @@ const List = () => {
 
   const handleEditPost = (index) => {
     setEditMode(true);
-    setEditedIndex(index);
     const post = posts[index];
-    setEditedTitle(post.title);
-    setEditedCategory(post.category);
-    setEditedContext(post.context);
+    setEditedPost({
+      index,
+      title: post.title,
+      category: post.category,
+      context: post.context
+    });
   };
 
   const handleSaveEdit = () => {
-    console.log("Edited Index:", editedIndex);
-    console.log("Edited Title:", editedTitle);
-    console.log("Edited Category:", editedCategory);
-    console.log("Edited Context:", editedContext);
-    dispatch(editPost(editedIndex, editedTitle, editedCategory, editedContext));
+    const { index, title, category, context } = editedPost;
+    dispatch(editPost(index, title, category, context));
     setEditMode(false);
-    setEditedIndex(null);
-    setEditedTitle("");
-    setEditedCategory("");
-    setEditedContext("");
+    setEditedPost({ index: null, title: "", category: "", context: "" });
     toast.success("Post updated successfully!", {
       className: "toast-success",
     });
@@ -51,10 +49,7 @@ const List = () => {
 
   const handleCancelEdit = () => {
     setEditMode(false);
-    setEditedIndex(null);
-    setEditedTitle("");
-    setEditedCategory("");
-    setEditedContext("");
+    setEditedPost({ index: null, title: "", category: "", context: "" });
   };
 
   const [likedPosts, setLikedPosts] = useState([]);
@@ -79,33 +74,23 @@ const List = () => {
                 key={index}
                 className="m-4 p-8 rounded-md shadow-md bg-white"
               >
-                {editMode && index === editedIndex ? (
+                {editMode && editedPost.index === index ? (
                   <>
-                    <input
-                      type="text"
-                      value={editedTitle}
-                      onChange={(e) => setEditedTitle(e.target.value)}
-                      className="mb-2 px-2 py-1 rounded border"
-                    />
-                    <input
-                      type="text"
-                      value={editedCategory}
-                      onChange={(e) => setEditedCategory(e.target.value)}
-                      className="mb-2 px-2 py-1 rounded border"
-                    />
-                    <input
-                      type="text"
-                      value={editedContext}
-                      onChange={(e) => setEditedContext(e.target.value)}
-                      className="mb-2 px-2 py-1 rounded border"
-                    />
+                    {Object.entries(editedPost).map(([key, value]) => (
+                      <input
+                        key={key}
+                        type="text"
+                        value={value}
+                        onChange={(e) => setEditedPost({...editedPost, [key]: e.target.value})}
+                        className="mb-2 px-2 py-1 rounded border"
+                      />
+                    ))}
                     <button
                       className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
                       onClick={handleSaveEdit}
                     >
                       Save
                     </button>
-
                     <button
                       className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
                       onClick={handleCancelEdit}
