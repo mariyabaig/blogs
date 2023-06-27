@@ -1,8 +1,11 @@
+
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deletePost, editPost } from "../state/action-creators/index";
 import { BsSuitHeart, BsSuitHeartFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const List = () => {
   const navigate = useNavigate();
@@ -17,6 +20,7 @@ const List = () => {
 
   const handleDeletePost = (index) => {
     dispatch(deletePost(index));
+    toast.success("Post deleted successfully!");
   };
 
   const handleEditPost = (index) => {
@@ -39,6 +43,7 @@ const List = () => {
     setEditedTitle("");
     setEditedCategory("");
     setEditedContext("");
+    toast.success("Post updated successfully!");
   };
 
   const handleCancelEdit = () => {
@@ -118,7 +123,11 @@ const List = () => {
                     </button>
                     <button
                       className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
-                      onClick={() => handleDeletePost(index)}
+                      onClick={() => {
+                        if (window.confirm("Are you sure you want to delete this post?")) {
+                          handleDeletePost(index);
+                        }
+                      }}
                     >
                       Delete
                     </button>
@@ -139,6 +148,7 @@ const List = () => {
           </div>
         )}
       </div>
+      <ToastContainer />
     </>
   );
 };
