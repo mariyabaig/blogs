@@ -135,7 +135,7 @@ const List = () => {
                       </span>
                       <span className="text-lg">Category: {post.category}</span>
                       <span className="text-lg">Context: {post.context}</span>
-                      {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />}
+                      {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
                           className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-purple-700 edit-button"
