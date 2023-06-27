@@ -32,7 +32,7 @@ export const deletePost = (index) => ({
   
 // action-creators/index.js
 
-export const editPost = (index, title, category, context) => {
+export const editPost = (index, title, category, context, image) => {
   return {
     type: EDIT_POST,
     payload: {
@@ -40,7 +40,8 @@ export const editPost = (index, title, category, context) => {
       post: {
         title: title,
         category: category,
-        context: context
+        context: context,
+        image: image
       }
     }
   };
@@ -50,8 +51,8 @@ export const editPost = (index, title, category, context) => {
 
 
   
-  export const updateBlog = (title, category, context) => ({
+  export const updateBlog = (title, category, context, image) => ({
     type: UPDATE_BLOG,
-    payload: { title, category, context }
+    payload: { title, category, context,image }
   });
   
