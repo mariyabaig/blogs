@@ -7,6 +7,7 @@ const Blogs = () => {
   const [category, setCategory] = useState('');
   const [context, setContext] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
   const dispatch = useDispatch();
@@ -28,6 +29,10 @@ const Blogs = () => {
     setCategory('');
     setContext('');
     setError('');
+
+    // Show success message
+    setSuccessMessage('Blog successfully added!');
+    setShowAlert(true);
   };
 
   useEffect(() => {
@@ -35,6 +40,7 @@ const Blogs = () => {
     if (showAlert) {
       timer = setTimeout(() => {
         setShowAlert(false);
+        setSuccessMessage('');
       }, 3000); // Duration for which the alert will be displayed (in milliseconds)
     }
     return () => {
@@ -92,22 +98,34 @@ const Blogs = () => {
           >
             Submit
           </button>
-          {showAlert && (
+          {showAlert && error && (
           <div className="bg-red-200 text-red-800 p-3 rounded mt-4">
             {error}
             <button
               className="ml-2 text-red-800 font-semibold"
               onClick={() => setShowAlert(false)}
             >
-             X
+              Cancel
             </button>
           </div>
         )}
+
+        {showAlert && successMessage && (
+          <div className="bg-purple-200 text-purple-800 p-3 rounded mt-4">
+            {successMessage}
+            <button
+              className="ml-2 text-purple-800 font-semibold"
+              onClick={() => setShowAlert(false)}
+            >
+              Close
+            </button>
+          </div>
+        )}
+
         </form>
 
 
-
-        {posts && posts.length > 0 && (
+        {/* {posts && posts.length > 0 && (
           <div className="mt-4">
             <h2 className="text-xl font-bold mb-2">Submitted Posts:</h2>
             <ul>
@@ -120,7 +138,7 @@ const Blogs = () => {
               ))}
             </ul>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
