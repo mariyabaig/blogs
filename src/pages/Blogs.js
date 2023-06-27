@@ -4,31 +4,32 @@ import { addPost } from '../state/action-creators/index';
 import { useNavigate } from 'react-router-dom';
 
 const Blogs = () => {
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [context, setContext] = useState('');
+  const [post, setPost] = useState({
+    title: '',
+    category: '',
+    context: ''
+  });
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [showAlert, setShowAlert] = useState(false);
 
   const dispatch = useDispatch();
-const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (title.trim() === '' || category.trim() === '' || context.trim() === '') {
+    if (post.title.trim() === '' || post.category.trim() === '' || post.context.trim() === '') {
       setError('Please fill in all fields.');
       setShowAlert(true);
       return;
     }
 
     // Dispatch action to add post
-    dispatch(addPost(title, category, context));
+    dispatch(addPost(post.title, post.category, post.context));
 
     // Reset form and error state
-    setTitle('');
-    setCategory('');
-    setContext('');
+    setPost({ title: '', category: '', context: '' });
     setError('');
 
     // Show success message
@@ -49,7 +50,15 @@ const navigate = useNavigate()
     };
   }, [showAlert]);
 
-  const posts = useSelector((state) => state.blogReducer.posts);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setPost((prevState) => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const { title, category, context } = post;
 
   return (
     <>
@@ -62,8 +71,9 @@ const navigate = useNavigate()
             <input
               type="text"
               id="title"
+              name="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
             />
           </div>
@@ -75,8 +85,9 @@ const navigate = useNavigate()
             <input
               type="text"
               id="category"
+              name="category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
             />
           </div>
@@ -87,8 +98,9 @@ const navigate = useNavigate()
             </label>
             <textarea
               id="context"
+              name="context"
               value={context}
-              onChange={(e) => setContext(e.target.value)}
+              onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
             ></textarea>
           </div>
@@ -99,34 +111,33 @@ const navigate = useNavigate()
           >
             Submit
           </button>
+
           {showAlert && error && (
-          <div className="bg-red-200 text-red-800 p-3 rounded mt-4">
-            {error}
-            <button
-              className="ml-2 text-red-800 font-semibold"
-              onClick={() => setShowAlert(false)}
-            >
-              Cancel
-            </button>
-          </div>
-        )}
+            <div className="bg-red-200 text-red-800 p-3 rounded mt-4">
+              {error}
+              <button
+                className="ml-2 text-red-800 font-semibold"
+                onClick={() => setShowAlert(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
 
-        {showAlert && successMessage && (
-          <div className="bg-purple-200 text-purple-800 p-3 rounded mt-4">
-            {successMessage}
-            <button
-              className="ml-2 text-purple-800 font-semibold"
-              onClick={() => setShowAlert(false)}
-            >
-              Close
-            </button>
-          </div>
-        )}
-<button className='bg-purple-100 block rounded-lg shadow hover:shadow-lg p-4 mt-2 font-bold text-purple-800' onClick={()=>navigate("/list")}>View Blogs</button>
+          {showAlert && successMessage && (
+            <div className="bg-purple-200 text-purple-800 p-3 rounded mt-4">
+              {successMessage}
+              <button
+                className="ml-2 text-purple-800 font-semibold"
+                onClick={() => setShowAlert(false)}
+              >
+                Close
+              </button>
+            </div>
+          )}
+
+          <button className='bg-purple-100 block rounded-lg shadow hover:shadow-lg p-4 mt-2 font-bold text-purple-800' onClick={() => navigate("/list")}>View Blogs</button>
         </form>
-
-
-      
       </div>
     </>
   );
