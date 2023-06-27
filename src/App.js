@@ -7,6 +7,7 @@ import List from './pages/List';
 import Navbar from './components/Navbar';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BlogPost from "./pages/BlogPost";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path="/addblogs" element={<Blogs />} />
           <Route exact path="/about" element={<About />} />
           <Route eaxct path="/list" element={<List />} />
+          <Route path="/blogs/:index" element={<BlogPost/>} />
         </Routes>
         <ToastContainer />
       </BrowserRouter>
