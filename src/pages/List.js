@@ -68,7 +68,7 @@ const List = () => {
 
   return (
     <>
-      <div className="bg-gray-100">
+      <div>
         <h2 className="text-3xl font-bold m-2 flex justify-center font-karla">Submitted Posts:</h2>
         <button
           className="bg-purple-100 p-4 text-purple-800 font-bold rounded-lg block m-3"
