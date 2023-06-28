@@ -47,7 +47,7 @@ const BlogPost = () => {
           </span>
         </div>
         <div className="spacer h-5" />
-        <p className="text-lg">Context: {post.context}</p>
+        <p className="text-lg text-gray-800">{post.context}</p>
         {post.image && (
           <img src={post.image} alt="" className="max-w-full h-auto mb-4" />
         )}
