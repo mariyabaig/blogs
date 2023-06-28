@@ -216,6 +216,17 @@ const List = () => {
                         </button>
                       </span>
                       <div className="tag">
+                        {post.tags &&
+                          post.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="text-sm p-2 m-2 rounded-lg bg-gray-700 text-white font-thin "
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                      </div>
+                      <div className="tag m-2">
                         <span className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold">
                           {post.category}
                         </span>
@@ -226,17 +237,7 @@ const List = () => {
                           ? `${post.context.slice(0, 100)}...`
                           : post.context}
                       </span>
-                      <div className="tag">
-                        {post.tags &&
-                          post.tags.map((tag, i) => (
-                            <span
-                              key={i}
-                              className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                      </div>
+                
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
