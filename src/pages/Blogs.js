@@ -72,7 +72,7 @@ const Blogs = () => {
   return (
     <>
       <div className="bg-gray-100 h-screen flex justify-center items-center">
-        <form onSubmit={handleSubmit} className="bg-white p-12 rounded">
+        <form onSubmit={handleSubmit} className="bg-white lg:grid lg:grid-cols-2 gap-2 p-12 rounded ">
           <div className="mb-4">
             <label htmlFor="title" className="block mb-2 text-gray-500 font-bold">
               Title:
@@ -144,7 +144,7 @@ const Blogs = () => {
           </div>
 
           {image && <img src={image} alt="Blog" className="max-w-full h-auto mb-4" />}
-
+<div >
           <button
             type="submit"
             className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow hover:bg-blue-600 transition-all duration-200"
@@ -157,6 +157,7 @@ const Blogs = () => {
           >
             View Blogs
           </button>
+          </div>
         </form>
       </div>
       <ToastContainer position="top-right" autoClose={3000} hideProgressBar={true} />
