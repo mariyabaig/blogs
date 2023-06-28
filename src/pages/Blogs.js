@@ -109,6 +109,7 @@ const Blogs = () => {
               type="text"
               id="tags"
               name="tags"
+              placeholder=' tags seperated by commas'
               value={tags.join(', ')}
               onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
