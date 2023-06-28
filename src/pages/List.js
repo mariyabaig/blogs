@@ -138,13 +138,13 @@ const List = () => {
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
-                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-purple-700 edit-button"
+                          className="m-2 shadow-sm  p-2 rounded-sm  edit-button"
                           onClick={() => handleEditPost(index)}
                         >
                           <BsPencil size={20} /> 
                         </button>
                         <button
-                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-red-500 delete-button"
+                          className="m-2 shadow-sm  p-2 rounded-sm delete-button"
                           onClick={() => {
                             if (window.confirm('Are you sure you want to delete this post?')) {
                               handleDeletePost(index);
@@ -154,10 +154,10 @@ const List = () => {
                           <BsTrash size={20} /> 
                         </button>
                         <button
-                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-green-500 view-button"
+                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-purple-800 font-bold view-button"
                           onClick={() => handleViewPost(index)}
                         >
-                          <BsEye size={20} /> 
+                          Show More
                         </button>
                       </span>
                     </div>
