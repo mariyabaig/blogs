@@ -198,7 +198,7 @@ const List = () => {
       key={i}
       className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
     >
-      {tag}
+      #{tag}
     </span>
   ))}
 </div>
