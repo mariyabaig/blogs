@@ -126,7 +126,7 @@ const List = () => {
           ))}
         </div>
         <button
-          className="bg-purple-100 p-4 text-purple-800 font-bold rounded-lg block m-3"
+          className="bg-purple-100 p-4 text-purple-800 font-bold rounded-lg block m-3  hover:bg-purple-400 transition-all duration-200"
           onClick={() => navigate("/addblogs")}
         >
           Add new blog
@@ -261,7 +261,7 @@ const List = () => {
                           <BsTrash size={20} />
                         </button>
                         <button
-                          className="m-2 shadow-sm bg-blue-700 p-2 rounded-sm text-white font-bold view-button"
+                          className="bg-blue-500 text-white font-bold py-2 px-4 rounded shadow hover:bg-blue-600 transition-all duration-200"
                           onClick={() => handleViewPost(index)}
                         >
                           Show More

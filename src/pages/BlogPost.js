@@ -37,7 +37,7 @@ const BlogPost = () => {
     <div className="bg-gray-100 h-screen flex justify-center items-center sm:flex-wrap">
    
       <div className="m-4 p-8 rounded-lg shadow-lg bg-white block w-3/4 ">
-      <button onClick={()=>navigate("/list")} className="bg-purple-100 p-2 rounded text-purple-700">Back</button>
+      <button onClick={()=>navigate("/list")} className="bg-purple-100 p-2 rounded text-purple-700  hover:bg-purple-400 transition-all duration-200">Back</button>
         <h2 className="text-2xl text-center font-bold text-purple-800 title">
           {post.title}
         </h2>
