@@ -138,7 +138,7 @@ const List = () => {
 </div>
                       <div className="spacer h-5" />
                       <span className="text-lg text-gray-800">
-  {post.context.length > 80 ? `${post.context.slice(0, 80)}...` : post.context}
+  {post.context.length > 100 ? `${post.context.slice(0, 100)}...` : post.context}
 </span>
 
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
