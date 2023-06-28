@@ -133,7 +133,9 @@ const List = () => {
                           {likedPosts.includes(index) ? <BsSuitHeartFill size={20} /> : <BsSuitHeart size={20} />}
                         </button>
                       </span>
-                      <span className="text-lg">Category: {post.category}</span>
+                      <div className="tag">
+  <span className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold">{post.category}</span>
+</div>
                       <div className="spacer h-5" />
                       <span className="text-lg">Context: {post.context}</span>
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
