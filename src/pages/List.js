@@ -76,8 +76,14 @@ const List = () => {
   const handleToggleLike = (index) => {
     if (likedPosts.includes(index)) {
       setLikedPosts(likedPosts.filter((likedIndex) => likedIndex !== index));
+      toast.error("Post unliked!", {
+        className: "toast-error",
+      });
     } else {
       setLikedPosts([...likedPosts, index]);
+      toast.success("Post liked!", {
+        className: "toast-success",
+      });
     }
   };
 
