@@ -5,8 +5,8 @@ const initialState = {
 };
 
 const blogReducer = (state = initialState, action) => {
-  console.log('Action:', action.type);
-  console.log('Payload:', action.payload);
+  // console.log('Action:', action.type);
+  // console.log('Payload:', action.payload);
   switch (action.type) {
     case ADD_POST:
       return {

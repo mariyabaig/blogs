@@ -152,7 +152,7 @@ const Blogs = () => {
             Add Blog
           </button>
           <button
-            type="submit"
+            type="button"
             className="m-2 bg-purple-200 text-purple-800 font-bold py-2 px-4 rounded shadow hover:bg-purple-400 transition-all duration-200" onClick={()=>(navigate("/list"))}
           >
             View Blogs
