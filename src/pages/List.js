@@ -167,7 +167,7 @@ const List = () => {
                 ) : (
                   <>
                     <div className="flex flex-col">
-                      <span className="text-2xl text-center text-purple-800 title">
+                      <span className="text-2xl font-bold font-mono text-center text-purple-900 title underline">
                         {post.title}
                         <button
                           className="m-2 text-red-600 shadow-sm"
