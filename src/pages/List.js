@@ -83,13 +83,32 @@ const List = () => {
   const handleViewPost = (index) => {
     navigate(`/blogs/${index}`);
   };
-
+  const allTags = posts.reduce((tags, post) => {
+    if (post.tags) {
+      post.tags.forEach((tag) => {
+        if (!tags.includes(tag)) {
+          tags.push(tag);
+        }
+      });
+    }
+    return tags;
+  }, []);
   return (
     <>
       <div>
         <h2 className="text-3xl font-bold m-2 flex justify-center font-karla">
          Your recent posts: 
         </h2>
+        <div className="flex justify-center flex-wrap gap-2 m-2">
+          {allTags.map((tag, index) => (
+            <span
+              key={index}
+              className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
+            >
+              #{tag}
+            </span>
+          ))}
+        </div>
         <button
           className="bg-purple-100 p-4 text-purple-800 font-bold rounded-lg block m-3"
           onClick={() => navigate("/addblogs")}
