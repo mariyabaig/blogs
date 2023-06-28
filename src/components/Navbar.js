@@ -50,6 +50,7 @@ const Navbar = () => {
             <Link to="/about" className="hover:font-bold">
               About
             </Link>
+            <h1 className="text-sm ml-16">{currentTime}</h1> 
           </div>
         </div>
         {menuOpen && (
@@ -63,14 +64,13 @@ const Navbar = () => {
             <Link to="/about" className="block py-2">
               About
             </Link>
+           
           </div>
         )}
       </nav>
       <div className="h-3 bg-purple-300"></div>
       <div className="h-3 bg-blue-200"></div>
-      <div className="mr-8">
-        <span className="text-md text-gray-500">{currentTime}</span>
-      </div>
+     
     </>
   );
 };

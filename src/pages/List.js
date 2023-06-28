@@ -110,8 +110,8 @@ const List = () => {
 
   return (
     <>
-      <div>
-        <h2 className="text-3xl font-bold m-2 flex justify-center font-karla">
+      <div className="bg-gray-100">
+        <h2 className="text-3xl font-bold m-2 flex justify-center font-karla ">
           Your recent posts:
         </h2>
         <div className="flex justify-center flex-wrap gap-2 m-2">
