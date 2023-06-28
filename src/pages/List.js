@@ -129,7 +129,7 @@ const List = () => {
                     <div className="flex flex-col">
                       <span className="text-2xl text-center text-purple-800 title">
                         {post.title}
-                        <button className="m-2 text-purple-500 shadow-sm" onClick={() => handleToggleLike(index)}>
+                        <button className="m-2 text-red-600 shadow-sm" onClick={() => handleToggleLike(index)}>
                           {likedPosts.includes(index) ? <BsSuitHeartFill size={20} /> : <BsSuitHeart size={20} />}
                         </button>
                       </span>
