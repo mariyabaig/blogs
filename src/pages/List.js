@@ -6,7 +6,7 @@ import {
   BsSuitHeartFill,
   BsPencil,
   BsTrash,
-  BsEye,
+  BsEye, BsCheckCircleFill, BsXSquare
 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
@@ -187,16 +187,16 @@ const List = () => {
                       );
                     })}
                     <button
-                      className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
+                      className="m-2 p-3 roundedshadow-sm"
                       onClick={handleSaveEdit}
                     >
-                      <BsPencil size={20} /> Save
+                      <BsCheckCircleFill size={20} /> Save
                     </button>
                     <button
-                      className="m-2 bg-blue-500 p-3 rounded text-white shadow-sm"
+                      className="m-2  p-3 rounded shadow-sm"
                       onClick={handleCancelEdit}
                     >
-                      <BsPencil size={20} /> Cancel
+                      <BsXSquare size={20} /> Cancel
                     </button>
                   </>
                 ) : (
