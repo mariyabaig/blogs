@@ -103,6 +103,7 @@ const List = () => {
                 key={index}
                 className="m-4 p-8 rounded-md shadow-md bg-white card"
               >
+              
                 {editMode && editedPost.index === index ? (
                   <>
                     {Object.entries(editedPost).map(([key, value]) => {
@@ -191,7 +192,16 @@ const List = () => {
                           ? `${post.context.slice(0, 100)}...`
                           : post.context}
                       </span>
-
+                      <div className="tag">
+  {post.tags && post.tags.map((tag, i) => (
+    <span
+      key={i}
+      className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
+    >
+      {tag}
+    </span>
+  ))}
+</div>
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
