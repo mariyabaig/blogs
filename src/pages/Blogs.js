@@ -1,5 +1,3 @@
-// Blogs.jsx
-
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../state/action-creators/index';
@@ -12,6 +10,7 @@ const Blogs = () => {
     title: '',
     category: '',
     context: '',
+    tags: [],
     image: null,
   });
 
@@ -27,10 +26,10 @@ const Blogs = () => {
     }
 
     // Dispatch action to add post
-    dispatch(addPost(post.title, post.category, post.context, post.image));
+    dispatch(addPost(post.title, post.category, post.context, post.tags, post.image));
 
     // Reset form and error state
-    setPost({ title: '', category: '', context: '', image: null });
+    setPost({ title: '', category: '', context: '', tags: [], image: null });
 
     // Show success message
     toast.success('Blog successfully added!');
@@ -54,6 +53,12 @@ const Blogs = () => {
           image: null,
         }));
       }
+    } else if (name === 'tags') {
+      const tagArray = value.split(',').map((tag) => tag.trim());
+      setPost((prevState) => ({
+        ...prevState,
+        tags: tagArray,
+      }));
     } else {
       setPost((prevState) => ({
         ...prevState,
@@ -62,7 +67,7 @@ const Blogs = () => {
     }
   };
 
-  const { title, category, context, image } = post;
+  const { title, category, context, tags, image } = post;
 
   return (
     <>
@@ -91,6 +96,20 @@ const Blogs = () => {
               id="category"
               name="category"
               value={category}
+              onChange={handleChange}
+              className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label htmlFor="tags" className="block mb-2 text-gray-500 font-bold">
+              Tags:
+            </label>
+            <input
+              type="text"
+              id="tags"
+              name="tags"
+              value={tags.join(', ')}
               onChange={handleChange}
               className="border border-gray-300 p-3 w-full rounded shadow focus:outline-none focus:ring-2 focus:border-blue-300"
             />
