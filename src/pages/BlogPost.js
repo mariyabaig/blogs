@@ -34,12 +34,15 @@ const BlogPost = () => {
     <div className="bg-gray-100 h-screen flex justify-center items-center">
       <div className="m-4 p-8 rounded-lg shadow-lg bg-white block w-3/4">
         <h2 className="text-2xl text-center font-bold text-purple-800 title">{post.title}</h2>
-        <p className="text-lg">Category: {post.category}</p>
+        <div className="tag">
+  <span className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold">{post.category}</span>
+</div>
+                      <div className="spacer h-5" />
         <p className="text-lg">Context: {post.context}</p>
         {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />}
         <div className="flex justify-center">
           <div
-            className="mr-2 cursor-pointer flex"
+            className="m-2 cursor-pointer flex p-2"
             onClick={handleShare}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
