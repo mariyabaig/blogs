@@ -25,6 +25,7 @@ const List = () => {
     image: "",
   });
   const [likedPosts, setLikedPosts] = useState([]);
+  const [selectedTag, setSelectedTag] = useState("all");
 
   const handleDeletePost = (index) => {
     dispatch(deletePost(index));
@@ -83,6 +84,11 @@ const List = () => {
   const handleViewPost = (index) => {
     navigate(`/blogs/${index}`);
   };
+
+  const handleTagClick = (tag) => {
+    setSelectedTag(tag);
+  };
+
   const allTags = posts.reduce((tags, post) => {
     if (post.tags) {
       post.tags.forEach((tag) => {
@@ -93,17 +99,27 @@ const List = () => {
     }
     return tags;
   }, []);
+
+  const filteredPosts = selectedTag === "all" ? posts : posts.filter(post => post.tags && post.tags.includes(selectedTag));
+
   return (
     <>
       <div>
         <h2 className="text-3xl font-bold m-2 flex justify-center font-karla">
-         Your recent posts: 
+          Your recent posts:
         </h2>
         <div className="flex justify-center flex-wrap gap-2 m-2">
+          <span
+            className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
+            onClick={() => handleTagClick("all")}
+          >
+            #All
+          </span>
           {allTags.map((tag, index) => (
             <span
               key={index}
-              className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
+              className={`text-sm p-2 rounded-lg bg-gray-400 text-white font-bold ${selectedTag === tag ? 'bg-gray-600' : ''}`}
+              onClick={() => handleTagClick(tag)}
             >
               #{tag}
             </span>
@@ -115,14 +131,13 @@ const List = () => {
         >
           Add new blog
         </button>
-        {posts && posts.length > 0 && (
+        {filteredPosts && filteredPosts.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 m-4">
-            {posts.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <div
                 key={index}
                 className="m-4 p-8 rounded-md shadow-md bg-white card"
               >
-              
                 {editMode && editedPost.index === index ? (
                   <>
                     {Object.entries(editedPost).map(([key, value]) => {
@@ -212,15 +227,16 @@ const List = () => {
                           : post.context}
                       </span>
                       <div className="tag">
-  {post.tags && post.tags.map((tag, i) => (
-    <span
-      key={i}
-      className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
-    >
-      #{tag}
-    </span>
-  ))}
-</div>
+                        {post.tags &&
+                          post.tags.map((tag, i) => (
+                            <span
+                              key={i}
+                              className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                      </div>
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
