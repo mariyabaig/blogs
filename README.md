@@ -1,6 +1,8 @@
 # Blogs
 
-BlogAway is a simple blog application built with React and Redux.
+BlogAway is a simple blog application built with React and Redux. 
+The application is deployed and accessible at the following URL: https://blogaway.surge.sh/
+Feel free to visit the URL and explore the application!
 
 ## Installation
 
