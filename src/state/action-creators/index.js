@@ -20,11 +20,10 @@ export const UPDATE_BLOG = 'UPDATE_BLOG';
 //   payload: { title, category, context }
 // });
 
-export const addPost = (title, category, context, image) => ({
+export const addPost = (title, category, context, tags, image) => ({
   type: ADD_POST,
-  payload: { title, category, context, image }
+  payload: { title, category, context, tags, image }
 });
-
 export const deletePost = (index) => ({
     type: DELETE_POST,
     payload: index
