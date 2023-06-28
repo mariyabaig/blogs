@@ -134,6 +134,7 @@ const List = () => {
                         </button>
                       </span>
                       <span className="text-lg">Category: {post.category}</span>
+                      <div className="spacer h-5" />
                       <span className="text-lg">Context: {post.context}</span>
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
@@ -154,7 +155,7 @@ const List = () => {
                           <BsTrash size={20} /> 
                         </button>
                         <button
-                          className="m-2 shadow-sm bg-purple-100 p-2 rounded-sm text-purple-800 font-bold view-button"
+                          className="m-2 shadow-sm bg-blue-700 p-2 rounded-sm text-white font-bold view-button"
                           onClick={() => handleViewPost(index)}
                         >
                           Show More
