@@ -137,7 +137,10 @@ const List = () => {
   <span className="text-sm p-2 rounded-lg bg-gray-400 text-white font-bold">{post.category}</span>
 </div>
                       <div className="spacer h-5" />
-                      <span className="text-lg">Context: {post.context}</span>
+                      <span className="text-lg text-gray-800">
+  {post.context.length > 80 ? `${post.context.slice(0, 80)}...` : post.context}
+</span>
+
                       {/* {post.image && <img src={post.image} alt="" className="max-w-full h-auto mb-4" />} */}
                       <span>
                         <button
