@@ -4,8 +4,6 @@ import { deletePost, editPost } from "../state/action-creators/index";
 import {
   BsSuitHeart,
   BsSuitHeartFill,
-  BsPencil,
-  BsTrash,
 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
