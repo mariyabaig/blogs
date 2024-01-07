@@ -138,10 +138,10 @@ const BlogList = () => {
         ))}
       </div>
       <button
-        className="bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600 transition-all duration-200"
+        className=" text-blue-500 font-bold py-2 px-4 text-2xl "
         onClick={() => navigate("/addblogs")}
       >
-        Add New Blog
+        Add New Blog +
       </button>
       {filteredPosts && filteredPosts.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
@@ -150,7 +150,7 @@ const BlogList = () => {
               key={index}
               className="p-6 border rounded-lg shadow-md bg-white"
             >
-              <h3 className="text-2xl font-bold mb-4 text-purple-800">
+              <h3 className="text-2xl font-bold mb-4 text-pink-500">
                 {post.title}
               </h3>
               {post.category && (

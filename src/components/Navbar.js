@@ -25,10 +25,10 @@ const Navbar = () => {
   return (
     <>
       <nav className="bg-gray-100  py-4">
-        <div className="container mx-auto flex justify-between items-center">
+        <div className="container">
           <Link
             to="/"
-            className="text-4xl font-bold text-blue-500 hover:font-bold font-cursive"
+            className="text-4xl font-bold text-blue-500 hover:font-bold ml-8 "
           >
             BlogAway
           </Link>
