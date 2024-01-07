@@ -53,7 +53,7 @@ const BlogPost = () => {
           <div className="spacer h-5" />
           <MDEditor.Markdown
             source={post.context}
-            data-color-mode="dark"
+            data-color-mode="light"
             style={{
               background: "white",
               color: "black",
