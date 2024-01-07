@@ -138,7 +138,7 @@ const BlogList = () => {
         ))}
       </div>
       <button
-        className="bg-purple-500 text-white font-bold py-2 px-4 rounded hover:bg-purple-600 transition-all duration-200"
+        className="bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600 transition-all duration-200"
         onClick={() => navigate("/addblogs")}
       >
         Add New Blog
@@ -175,7 +175,7 @@ const BlogList = () => {
                 source={post.context}
                 data-color-mode="light"
                 className="mb-4"
-                style={{backgroundColor: 'white', color : 'black'}}
+                style={{ backgroundColor: "white", color: "black" }}
               />
               <div className="flex justify-between">
                 <div className="flex space-x-4">

@@ -70,7 +70,7 @@ const Modal = ({
 
           <div className="mb-4">
             <label htmlFor="edit-context" className="block text-sm mb-1">
-              Context:
+              Blog Content:
             </label>
             <MDEditor
                           id="edit-context"

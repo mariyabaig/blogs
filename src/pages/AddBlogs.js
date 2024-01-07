@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import MDEditor from "@uiw/react-md-editor";
 
 
-const Blogs = () => {
+const AddBlogs = () => {
   const [post, setPost] = useState({
     title: '',
     category: '',
@@ -144,7 +144,7 @@ const Blogs = () => {
               htmlFor="context"
               className="block mb-2 text-gray-500 font-bold"
             >
-              Context:
+              Blog Content:
             </label>
             <MDEditor
               data-color-mode="light"
@@ -185,7 +185,7 @@ const Blogs = () => {
             </button>
             <button
               type="button"
-              className="m-2 bg-purple-200 text-purple-800 font-bold py-2 px-4 rounded shadow hover:bg-purple-400 transition-all duration-200"
+              className="m-2 bg-pink-500 text-white font-bold py-2 px-4 rounded hover:bg-pink-600 transition-all duration-200"
               onClick={() => navigate("/list")}
             >
               View Blogs
@@ -202,4 +202,4 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default AddBlogs;
